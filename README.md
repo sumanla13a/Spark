@@ -10,12 +10,12 @@
     1. create a new Maven Project
     2. Add spark library dependency in pom.xml file
     3. wordCountJava7
-        a. Define configuration to setup spark with our app.\n
-        b. Take input.\n
-        c. Use flat map to make an arrayList of all the methods (GET, POST,...) and the response message.\n
-        d. Use mapToPair to map the arrayList to list of tuple with values 1 for all entries.\n
-        e. Sum all the values of tuple with common key.\n
-        f. Save the output in a file.\n
+        - Define configuration to setup spark with our app.
+        - Take input.
+        - Use flat map to make an arrayList of all the methods (GET, POST,...) and the response message.
+        - Use mapToPair to map the arrayList to list of tuple with values 1 for all entries.
+        - Sum all the values of tuple with common key.
+        - Save the output in a file.
         
 
   - How to Run
