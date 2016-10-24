@@ -7,6 +7,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
+
 import scala.Tuple2;
 
 import java.util.Arrays;
@@ -14,16 +15,17 @@ import java.util.Arrays;
 public class WordCount {
 
     public static void wordCountJava7( String filename ) {
-        SparkConf conf = new SparkConf().setMaster("local").setAppName("Work Count App");
-
+        SparkConf conf = new SparkConf().setMaster("local").setAppName("Apache Log Details");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         JavaRDD<String> input = sc.textFile( filename );
-
+        
         JavaRDD<String> words = input.flatMap(
                 new FlatMapFunction<String, String>() {
                     public Iterable<String> call(String s) {
-                        return Arrays.asList(s.split(" "));
+                    	String[] stringArray = s.split(" ");
+                    	int length = stringArray.length;
+                        return Arrays.asList(stringArray[5].substring(1) + " " + stringArray[length-2]);
                     }
                 } );
 
@@ -39,7 +41,6 @@ public class WordCount {
                 public Integer call(Integer x, Integer y){ return x + y; }
             } );
         
-        JavaPairRDD<String, Integer> finalcount = reducedCounts.
         reducedCounts.saveAsTextFile( "output" );
     }
 
