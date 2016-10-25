@@ -12,9 +12,9 @@ import scala.Tuple2;
 
 import java.util.Arrays;
 
-public class WordCount {
+public class ApacheLog {
 
-    public static void wordCountJava7( String filename ) {
+    public static void getRequestResponseInfo( String filename ) {
         SparkConf conf = new SparkConf().setMaster("local").setAppName("Apache Log Details");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
@@ -42,6 +42,7 @@ public class WordCount {
             } );
         
         reducedCounts.saveAsTextFile( "output" );
+        sc.close();
     }
 
     public static void main( String[] args ) {
@@ -50,6 +51,6 @@ public class WordCount {
             System.exit( 0 );
         }
 
-        wordCountJava7( args[ 0 ] );
+        getRequestResponseInfo( args[ 0 ] );
     }
 }
